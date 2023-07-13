@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&family=Raleway:wght@300;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #333;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+}
+
+.header{
+    background-color: brown;
+    padding: 25px 100px;
+    font-weight: 600;
+}
+
+main{
+    margin:  50px 100px;
+    width: 50%;
+    float: left;
+}
+
+aside{
+    width: 20%;
+    margin-top: 50px;
+    margin-left:  5%;
+    float: left;
+}
+
+main .user {
+    margin-bottom: 50px;
+    background-color:black;
+    padding: 20px;
+}
+
+main .delete-icon{
+    float: right;
+    margin-right: 25px
+}
+
+main .edit-icon{
+    float: right;
+    margin-right: 25px;
+    cursor: pointer;
+    transform: scale(2);
+}
+
+main .delete-icon:hover,
+main .edit-icon:hover{
+    opacity: 0.5;
+}
+
+aside form input:not([type="checkbox"]), 
+aside form textarea, 
+aside form button{
+    width: 90%;
+    padding: 15px 5%;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    margin-bottom: 10px;
+    border: 0;
+    background: black;
+    color: #fff;
+    font-size: 15px;
+}
+
+aside form input[type="checkbox"]{
+    margin: 10px;
+}
+
+aside form button{
+    width:  100%;
+    cursor: pointer;
+    transition: transform 500ms ease;
+}
+
+aside form button:hover{
+    transform: scale(1.1);
+}
