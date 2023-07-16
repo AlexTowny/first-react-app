@@ -2,10 +2,24 @@ import React from "react"
 import Header from "./components/Header"
 import Users from "./components/Users"
 import AddUser from "./components/AddUser"
+import axios from "axios"
+import { toHaveStyle } from "@testing-library/jest-dom/matchers"
+
+const baseUrl = "https://reqres.in/api/users?page=1"
 
 class App extends React.Component{
     constructor(props){
         super(props)
+
+        axios.get(baseUrl).then((res) => {
+            this.setState({
+                users: res.data.data
+            })
+        })
+
+        this.AddUser = this.AddUser.bind(this)
+        this.deleteUser = this.deleteUser.bind(this)
+        this.editUser = this.editUser.bind(this)
         this.state = {
             users : [
             {
@@ -31,12 +45,32 @@ class App extends React.Component{
         return (<div >
             <Header title="Список пользователей" />
             <main>
-                <Users users={this.state.users}/>
+                <Users onEdit={this.editUser}  users={this.state.users} onDelete={this.deleteUser}/>
             </main>
             <aside>
-                <AddUser/>
+                <AddUser onAdd={this.addUser}/>
             </aside>
         </div>)
+    }
+
+    deleteUser(id){
+        this.setState({
+            users: this.state.users.filter((el)=>el.id !==id)  
+        })
+    }
+
+    editUser(user){
+        let allUsers = this.state.users
+        allUsers[user.id-1] = user
+
+        this.setState({users:[]}, () => {
+            this.setState({users: [...allUsers]})
+        })
+    }
+
+    AddUser(user){
+        const id = this.state.users.length + 1
+        this.setState({users : [...this.state.users, {id, ...user}] })
     }
 }
 
